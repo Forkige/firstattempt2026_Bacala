@@ -13,8 +13,8 @@ Quick Setup Guide
 
 Installation (3 Steps)
 1. Clone/Download the repository
-    > git clone <your-repo-url>
-    cd alumni-portal
+    > git clone https://github.com/Forkige/firstattempt2026_Bacala
+    cd firstattempt2026_Bacala
     
 2. Install dependencies
     > npm install
