@@ -1,5 +1,5 @@
 // Reusable Button component
-import React from 'react';
+import React, { memo } from 'react';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ interface ButtonProps {
   fullWidth?: boolean;
 }
 
-export default function Button({
+const Button = memo<ButtonProps>(({
   children,
   onClick,
   className = '',
@@ -21,7 +21,7 @@ export default function Button({
   disabled = false,
   type = 'button',
   fullWidth = false
-}: ButtonProps) {
+}) => {
   const baseStyles = 'font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2';
   
   const variants = {
@@ -49,4 +49,8 @@ export default function Button({
       {children}
     </button>
   );
-}
+});
+
+Button.displayName = 'Button';
+
+export default Button;

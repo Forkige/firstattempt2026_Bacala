@@ -16,9 +16,16 @@ export default function AlumniDashboard() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 pb-8">
-        <div className="max-w-6xl mx-auto">
-          <h1 className="text-2xl font-bold mb-1">Welcome Back, John! 👋</h1>
-          <p className="text-blue-100">Your generous support makes a difference</p>
+        <div className="max-w-6xl mx-auto flex flex-col items-center gap-4">
+          <img
+            src="/UniversitySeal240px.png"
+            alt="Ateneo de Davao University seal"
+            className="w-20 h-20 object-contain"
+          />
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-1">Welcome Back, John! 👋</h1>
+            <p className="text-blue-100">Your generous support makes a difference</p>
+          </div>
         </div>
       </div>
 
@@ -43,25 +50,25 @@ export default function AlumniDashboard() {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <Card>
             <div className="text-center">
-              <div className="text-2xl mb-2">5</div>
+              <div className="text-2xl text-black mb-2">5</div>
               <p className="text-sm text-gray-600">Donations</p>
             </div>
           </Card>
           <Card>
             <div className="text-center">
-              <div className="text-2xl mb-2">₱8.9M</div>
+              <div className="text-2xl text-black mb-2">₱8.9M</div>
               <p className="text-sm text-gray-600">Collective Impact</p>
             </div>
           </Card>
           <Card>
             <div className="text-center">
-              <div className="text-2xl mb-2">3</div>
+              <div className="text-2xl text-black mb-2">3</div>
               <p className="text-sm text-gray-600">Campaigns Supported</p>
             </div>
           </Card>
           <Card>
             <div className="text-center">
-              <div className="text-2xl mb-2">🥇</div>
+              <div className="text-2xl text-black mb-2">🥇</div>
               <p className="text-sm text-gray-600">Top Supporter</p>
             </div>
           </Card>

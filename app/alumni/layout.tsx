@@ -20,7 +20,11 @@ export default function AlumniLayout({
   }, [isLoggedIn, router]);
 
   if (!isLoggedIn) {
-    return null;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white text-gray-800">
+        <p className="text-base font-medium">Checking session...</p>
+      </div>
+    );
   }
 
   const navLinks = [

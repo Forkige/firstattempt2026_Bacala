@@ -30,7 +30,7 @@ export const campaigns = [
     category: "Infrastructure",
     description: "Renovate and expand our campus facilities",
     story: "We need to upgrade our library, sports facilities, and student centers to provide a world-class learning environment.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627033eee98?w=500&h=300&fit=crop",
+    image: "/SHS-Perspective.png",
     goal: 500000,
     raised: 320000,
     donors: 156,

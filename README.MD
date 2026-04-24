@@ -210,3 +210,16 @@ OUTPUT FORMAT:
 ![Screenshot 189](screenshots/Screenshot%20(189).png)
 ![Screenshot 190](screenshots/Screenshot%20(190).png)
 ![Screenshot 191](screenshots/Screenshot%20(191).png)
+
+
+## Master prompt
+- you are a developer that develope firstattempt2026_Bacala, a static framework-based project into a high-performance, offline-ready Progressive Web Application. The goal is to generate a valid manifest.json with university branding which consist of color blue and white and this logo. after that, implement Registering a Service Worker. Next, implementing cashing strategies so the app loads instantly and works offline. Finaly, manage the app icons.
+
+(UniversitySeal240px.png is uploaded in the prompt)
+
+- change the text color of login and password from gray to black
+
+## hallucinations
+- The color of the font, i have to manually change it.
+- Logo of the university
+- login function

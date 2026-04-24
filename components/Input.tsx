@@ -1,5 +1,5 @@
 // Reusable Input component
-import React from 'react';
+import React, { memo } from 'react';
 
 interface InputProps {
   type?: string;
@@ -14,7 +14,7 @@ interface InputProps {
   icon?: React.ReactNode;
 }
 
-export default function Input({
+const Input = memo<InputProps>(({
   type = 'text',
   placeholder,
   value,
@@ -25,24 +25,24 @@ export default function Input({
   error,
   required = false,
   icon
-}: InputProps) {
+}: InputProps) => {
   return (
     <div className={`w-full ${className}`}>
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-black mb-2">
           {label}
           {required && <span className="text-red-600 ml-1">*</span>}
         </label>
       )}
       <div className="relative">
-        {icon && <div className="absolute left-3 top-3 text-gray-500">{icon}</div>}
+        {icon && <div className="absolute left-3 top-3 text-black">{icon}</div>}
         <input
           type={type}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
           disabled={disabled}
-          className={`w-full px-4 py-3 ${icon ? 'pl-10' : ''} border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 disabled:bg-gray-100 disabled:text-gray-600 ${
+          className={`w-full px-4 py-3 ${icon ? 'pl-10' : ''} border-2 border-black/20 rounded-lg focus:outline-none focus:border-blue-600 disabled:bg-gray-100 disabled:text-black ${
             error ? 'border-red-600' : ''
           }`}
         />
@@ -50,4 +50,8 @@ export default function Input({
       {error && <p className="text-red-600 text-sm mt-1">{error}</p>}
     </div>
   );
-}
+});
+
+Input.displayName = 'Input';
+
+export default Input;

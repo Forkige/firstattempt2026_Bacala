@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Ateneo de Davao Alumni Icon">
+  <rect width="512" height="512" rx="96" fill="#0033a0" />
+  <path d="M128 128h256v256H128z" fill="#ffffff" rx="64" />
+  <path d="M256 160v192M176 256h160" stroke="#0033a0" stroke-width="32" stroke-linecap="round" />
+  <path d="M160 352c24-58 56-116 96-116s72 58 96 116" stroke="#0033a0" stroke-width="28" fill="none" stroke-linecap="round" />
+  <path d="M312 168l56-32 32 56-56 32z" fill="#ffffff" opacity="0.8" />
+</svg>

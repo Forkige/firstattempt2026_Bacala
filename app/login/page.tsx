@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+'use client';
+
+import { useState, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
@@ -12,48 +14,50 @@ export default function LoginPage() {
   const { setUser } = useAppContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleLogin = () => {
-    // Basic validation
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
     const newErrors: { email?: string; password?: string } = {};
-    if (!email) newErrors.email = 'Email or ID is required';
-    if (!password) newErrors.password = 'Password is required';
+    if (!email.trim()) newErrors.email = 'Email or ID is required';
+    if (!password.trim()) newErrors.password = 'Password is required';
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    // Mock login - accept any email/password
-    // In real app, this would call backend
+    setIsSubmitting(true);
     setUser({
       id: '12345',
-      email: email,
+      email,
       name: 'John Doe',
       role: 'alumni',
       program: 'Bachelor of Science in Computer Science',
-      batch: 2020
+      batch: 2020,
     });
 
-    router.push('/alumni/dashboard');
+    await router.replace('/alumni/dashboard');
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        {/* Header */}
         <div className="text-center mb-8">
-          <div className="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-            🎓
+          <div className="mx-auto mb-4 w-24 h-24 rounded-full overflow-hidden bg-white border-4 border-blue-600 shadow-sm">
+            <img
+              src="/addu-logo.svg"
+              alt="Ateneo de Davao University logo"
+              className="w-full h-full object-contain"
+            />
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Alumni Portal</h1>
-          <p className="text-gray-600">Supporting our community through giving</p>
+          <h1 className="text-3xl font-bold text-black mb-2">Alumni Portal</h1>
+          <p className="text-black">Supporting our community through giving</p>
         </div>
 
-        {/* Login Form */}
-        <div className="bg-white rounded-lg shadow-lg p-6 space-y-4">
+        <form onSubmit={handleLogin} className="bg-white rounded-lg shadow-lg p-6 space-y-4 text-black">
           <Input
             type="email"
             label="Email or Student ID"
@@ -61,74 +65,51 @@ export default function LoginPage() {
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
-              setErrors({ ...errors, email: '' });
+              setErrors((current) => ({ ...current, email: '' }));
             }}
             error={errors.email}
             required
             icon="📧"
           />
 
-          <div className="relative">
-            <Input
-              type={showPassword ? 'text' : 'password'}
-              label="Password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setErrors({ ...errors, password: '' });
-              }}
-              error={errors.password}
-              required
-              icon="🔒"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-[42px] text-gray-600 hover:text-gray-800"
-            >
-              {showPassword ? '👁️' : '👁️‍🗨️'}
-            </button>
-          </div>
+          <Input
+            type="password"
+            label="Password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrors((current) => ({ ...current, password: '' }));
+            }}
+            error={errors.password}
+            required
+            icon="🔒"
+          />
 
           <div className="flex justify-end">
-            <Link
-              href="/forgot-password"
-              className="text-sm text-blue-600 hover:underline font-medium"
-            >
+            <Link href="/forgot-password" className="text-sm text-blue-600 hover:underline font-medium">
               Forgot Password?
             </Link>
           </div>
 
-          <Button
-            onClick={handleLogin}
-            fullWidth
-            size="lg"
-            variant="primary"
-          >
-            Login
+          <Button type="submit" fullWidth size="lg" variant="primary" disabled={isSubmitting}>
+            {isSubmitting ? 'Logging in...' : 'Login'}
           </Button>
 
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <div className="flex-1 border-t"></div>
+          <div className="flex items-center gap-2 text-sm text-black">
+            <div className="flex-1 border-t" />
             <span>New here?</span>
-            <div className="flex-1 border-t"></div>
+            <div className="flex-1 border-t" />
           </div>
 
-          <Button
-            onClick={() => router.push('/sign-up')}
-            fullWidth
-            size="lg"
-            variant="outline"
-          >
+          <Button type="button" onClick={() => router.push('/sign-up')} fullWidth size="lg" variant="outline">
             Create Account
           </Button>
-        </div>
+        </form>
 
-        {/* Demo Info */}
         <div className="mt-6 bg-blue-50 border-l-4 border-blue-600 p-4 rounded">
-          <p className="text-sm text-gray-700">
-            <strong>Demo:</strong> Use any email and password to login
+          <p className="text-sm text-black">
+            <strong>Demo:</strong> Enter any email and password, then click login.
           </p>
         </div>
       </div>

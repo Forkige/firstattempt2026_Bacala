@@ -1,6 +1,7 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { campaigns } from '@/data/campaigns';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
@@ -10,6 +11,7 @@ export default function CampaignDetailsPage() {
   const router = useRouter();
   const params = useParams();
   const campaignId = parseInt(params.id as string);
+  const [imageSrc, setImageSrc] = useState<string>('');
 
   const campaign = campaigns.find(c => c.id === campaignId);
 
@@ -35,9 +37,10 @@ export default function CampaignDetailsPage() {
       {/* Banner Image */}
       <div className="relative">
         <img
-          src={campaign.image}
+          src={imageSrc || campaign.image}
           alt={campaign.title}
           className="w-full h-64 object-cover"
+          onError={() => setImageSrc('/SHS-Perspective.png')}
         />
         <button
           onClick={() => router.back()}
